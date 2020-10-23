@@ -8,7 +8,6 @@ export default class Grid {
         this.#setRows(rows);
         this.#setColumns(columns);
         this.#checkDimensions();
-        this.#columns = columns;
         this.#generateGrid();
     }
 
@@ -45,6 +44,7 @@ export default class Grid {
         return this.#grid[row][column];
     }
 
+    // Checks if the total number of the elements in the grid i a even number.
     #checkDimensions() {
         if ((this.#rows * this.#columns) % 2 !== 0) {
             throw new InvalidDimensions();

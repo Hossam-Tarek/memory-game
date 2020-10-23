@@ -1,6 +1,6 @@
 # Grid Class Doc
 
-This class is meant to deal with the memory game grid throw a simple functions, without lots of complications.
+This class is meant to deal with the memory game grid throw simple functions, without lots of complications.
 
 |                Method               |  Return type   | Description
 |-------------------------------------|----------------|------------------------

@@ -1,1 +1,37 @@
+body {
+    background-color: #ededed;
+}
+.container {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(3,1fr);
+    gap: 10px;
+    width: 50%;  
+    margin: auto;
+}
 
+.card {
+    background-color: rgb(40, 24, 112); 
+    border-radius: 10px;
+}
+
+.face {
+    transform-style: preserve-3d;
+    transform:  rotateY(180deg);
+    backface-visibility: hidden;
+    transition:1s ease-in-out;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.flip {
+    transform: perspective(500px) rotateY(0deg) translateZ(10px);
+}
+
+.disabled {
+    pointer-events: none;
+}

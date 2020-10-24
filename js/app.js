@@ -24,9 +24,11 @@ let timer, sec_count = 0, min_count = 0, ten_count = 0;;
 overlayToStartPlaying.addEventListener('click', function () {
     this.parentElement.style.display = 'none';
 
+    // Start drawing the grid.
+    drawGrid();
+
     //Start Timing function
     timer = setInterval(timerCalculator, 10);
-
 });
 
 // Reset game
@@ -156,11 +158,50 @@ function resetTimer() {
 /* End handling of game Layout */
 
 /* Start handling of game cards and board */
-var cards = document.querySelectorAll('.card');
-cards.forEach(card => card.addEventListener('click', flipCard));
-
 function flipCard(){
     this.children[0].classList.toggle("flip");
     this.classList.toggle("disabled");
 }
 /* End handling of game cards abd board */
+
+
+// Draws the grid cards with the selected dimensions.
+function drawGrid() {
+    let [rows, columns] = checkCardOptions();
+    let grid = new Grid(rows, columns);
+
+    let gameBoard = document.getElementById("game-board");
+    gameBoard.innerHTML = "";
+
+
+    gameBoard.setAttribute("style",
+        `grid-template-rows: repeat(${rows},1fr); grid-template-columns: repeat(${columns},1fr)`);
+
+
+    grid.forEach(element => {
+        let card = document.createElement("div");
+        card.classList.add("card");
+        card.addEventListener("click", flipCard);
+
+        let image = document.createElement("img");
+        image.src = `images/${element}`;
+        image.classList.add("face");
+
+        card.append(image);
+        gameBoard.append(card);
+    });
+}
+
+// Checks which card option is selected, returns num of rows and columns.
+function checkCardOptions() {
+    let rows, columns;
+    let cardsOptions = document.querySelectorAll(".game-choices__board-size__options");
+
+    cardsOptions.forEach(cardOption => {
+        if (cardOption.classList.contains("game-choices__board-size__options__focused")) {
+            [rows, columns] = cardOption.textContent.split("x");
+        }
+    });
+
+    return [parseInt(rows), parseInt(columns)];
+}

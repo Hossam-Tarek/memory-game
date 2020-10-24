@@ -92,8 +92,8 @@ body {
 /* Start main.cards-board Style */
 .cards-board {
     display: grid;
+    grid-template-rows: repeat(3,1fr);
     grid-template-columns: repeat(4,1fr);
-    grid-template-rows: repeat(4,1fr);
     gap: 10px;
     padding: 2%;
     position: relative;

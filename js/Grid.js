@@ -126,6 +126,15 @@ export default class Grid {
 
         return count;
     }
+
+    // Draws the whole grid by drawing each element using a callback function.
+    drawGrid(callback) {
+        for (let i = 0; i < this.#rows; i++) {
+            for (let j = 0; j < this.#columns; j++) {
+                callback(this.#grid[i][j]);
+            }
+        }
+    }
 }
 
 class InvalidRowsNumber extends Error {

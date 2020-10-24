@@ -14,7 +14,7 @@ body {
 
 .container {
     height: 90%;
-    width: 50%;
+    width: 45%;
     margin: 5px auto;
 }
 
@@ -90,16 +90,47 @@ body {
 /* End Playing status Style */
 
 /* Start main.cards-board Style */
-
 .cards-board {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(4,1fr);
+    gap: 10px;
+    padding: 2%;
     position: relative;
-    height: 500px;
-    /* Will changes*/
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     box-shadow: 0 0 15px 0 rgba(46, 61, 73, 0.5);
-    margin: 1% 0 2%;
     border-radius: 4px;
 }
+
+/* Start handling of game cards and board */
+.card {
+    background-color:#2e3d49; 
+    border-radius: 10px;
+}
+
+.face {
+    transform-style: preserve-3d;
+    transform:  rotateY(180deg);
+    backface-visibility: hidden;
+    transition:1s ease-in-out;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.flip {
+    transform: perspective(500px) rotateY(0deg) translateZ(10px);
+}
+
+.disabled {
+    pointer-events: none;
+}
+/* .cards-board {
+
+} */
 
 .overlay-to-start-playing {
     position: absolute;
@@ -110,7 +141,7 @@ body {
     align-items: center;
     width: 100%;
     height: 100%;
-    background-color: rgba(49, 49, 49, 0.57);
+    background: linear-gradient(160deg, #aa7ecd88 0%, #02ccbbb8 100%);
     z-index: 1;
 }
 
@@ -229,7 +260,7 @@ body {
     z-index: 1;
 }
 
-.modal-box {
+.modal__box {
     background-color: #fff;
     width: 40%;
     padding: 40px;
@@ -239,7 +270,11 @@ body {
     list-style: none;
 }
 
-.btn-modal {
+.modal__box i:nth-of-type(1), .modal__box i:nth-of-type(2){
+    color: #fdcc0d;
+}
+
+.modal__box__restart-game {
     color: #f3f7f7;
     background-color: #02b3e4;
     width: 120px;
@@ -250,15 +285,11 @@ body {
     font-size: 1em;
 }
 
-.btn-modal:hover {
+.modal__box__restart-game:hover {
     background-color: #f3f7f7;
     color: #02b3e4;
     transition: all 0.5s;
 }
-
-/* Start message after game done */
-
-
 
 @media only screen and (max-width: 768px){
     .container {
@@ -271,3 +302,4 @@ body {
         width: 90%;
     }
 }
+

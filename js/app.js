@@ -1,3 +1,7 @@
+import Grid from "./Grid.js";
+
+/* Start handling of game Layout */
+
 const soloPlayingStatus = document.querySelector('.current-playing-status__solo'),
     withFirendPlayingStatus = document.querySelector('.current-playing-status__with-a-friend'),
     againstComputerPlayingStatus = document.querySelector('.current-playing-status__against-computer'),
@@ -9,6 +13,7 @@ const soloPlayingStatus = document.querySelector('.current-playing-status__solo'
     gameBoardSize = document.querySelector('.game-choices__board-size'),
     overlayToStartPlaying = document.querySelector('.overlay-to-start-playing p'),
     reset_btn = document.querySelector(".current-playing-status__solo__reset"),
+    restartGameAfterGameComplete= document.querySelector('.modal__box__restart-game'),
     timerTens = document.querySelector(".timer__tens"),
     timerSeconds = document.querySelector(".timer__seconds"),
     timerMinutes = document.querySelector(".timer__minutes");
@@ -22,13 +27,14 @@ overlayToStartPlaying.addEventListener('click', function () {
     //Start Timing function
     timer = setInterval(timerCalculator, 10);
 
-})
-reset_btn.addEventListener("click", () => {
-    resetTimer();
-    /// Reset Game Handling Here
-
 });
 
+// Reset game
+reset_btn.addEventListener("click", () => {
+    resetTimer();
+    // Handling Reset Game Here
+
+});
 
 // Click Events For game mode
 Array.prototype.forEach.call(gameMode.children[1].children, element => {// Article(Difficluty) > span+div span*3
@@ -49,9 +55,7 @@ Array.prototype.forEach.call(gameMode.children[1].children, element => {// Artic
             resetTimer();
             //Add overlay when start playing in this mode but previous time in another mode
             overlayToStartPlaying.parentElement.style.display = 'flex';
-            /// Reset Game Handling Here
         }
-
 
         Array.prototype.forEach.call(gameMode.children[1].children, element => {
             element.classList.remove('game-choices__mode__options__focused');
@@ -64,7 +68,6 @@ Array.prototype.forEach.call(gameMode.children[1].children, element => {// Artic
         else {
             gameDifficulty.style.display = 'none';
         }
-        // Habdle Difficulty
 
         if (!element.getAttribute('id') === 'game-mode-against-computer')
             gameDifficulty.style.display = 'none';
@@ -78,7 +81,7 @@ Array.prototype.forEach.call(gameDifficulty.children[1].children, element => {//
             element.classList.remove('game-choices__difficulty__options__focused');
         });
         element.classList.add('game-choices__difficulty__options__focused');
-        // Habdle Difficulty
+        // Handling of Difficulty Here
     })
 });
 
@@ -89,13 +92,9 @@ Array.prototype.forEach.call(gameBoardSize.children[1].children, element => {// 
             element.classList.remove('game-choices__board-size__options__focused');
         });
         element.classList.add('game-choices__board-size__options__focused');
-        // Habdle board size
+        // Handling of board size Here
     })
 });
-
-
-
-
 
 // Get players name for game
 function getPlayersName() {
@@ -154,3 +153,14 @@ function resetTimer() {
     timerTens.innerHTML = "00";
     clearInterval(timer);
 }
+/* End handling of game Layout */
+
+/* Start handling of game cards and board */
+var cards = document.querySelectorAll('.card');
+cards.forEach(card => card.addEventListener('click', flipCard));
+
+function flipCard(){
+    this.children[0].classList.toggle("flip");
+    this.classList.toggle("disabled");
+}
+/* End handling of game cards abd board */

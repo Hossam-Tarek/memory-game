@@ -1,1 +1,273 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
+body {
+    background: #ffffff url('../images/background.png');
+    /* Background pattern from Subtle Patterns */
+    font-family: 'Coda', cursive;
+}
+
+/* Start Game container Style */
+
+.container {
+    height: 90%;
+    width: 50%;
+    margin: 5px auto;
+}
+
+.container__heading1 {
+    text-align: center;
+    font-size: 2em;
+    font-weight: 300;
+    text-shadow: 0 0 8px rgba(67, 145, 209, 0.5);
+    margin-bottom: .5%;
+}
+
+/* End Game container Style */
+
+/* Start Playing status Style */
+
+.current-playing-status__solo {
+    display: flex;
+    /*Changed To flex via JS*/
+    justify-content: space-evenly;
+}
+
+.current-playing-status__solo span {
+    width: 33%;
+    text-align: center;
+}
+
+.current-playing-status__solo__reset {
+    cursor: pointer;
+}
+
+.current-playing-status__with-a-friend, .current-playing-status__against-computer {
+    display: none;
+    /*Changed To flex via JS*/
+    justify-content: space-between;
+}
+
+.current-playing-status__with-a-friend div, .current-playing-status__against-computer div {
+    text-align: center;
+    padding: 1%;
+    width: 40%;
+    margin: 0.5%;
+    font-weight: 900;
+    border-radius: 3px;
+}
+
+.active-player {
+    background-color: .08bdae;
+    border: 1px solid .088f84;
+    color: #fff;
+}
+
+.current-playing-status__with-a-friend div, .current-playing-status__against-computer div {
+    background-color: #eee6f5;
+    border: 1px solid #e9d6fa;
+    color: #83758b;
+}
+
+.current-playing-status__with-a-friend div span, .current-playing-status__against-computer div span {
+    color: #f8a412
+}
+
+.current-playing-status__with-a-friend div span, .current-playing-status__against-computer div span {
+    display: block;
+    font-weight: normal;
+    font-size: 0.75rem;
+}
+
+.timer-container {
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+/* End Playing status Style */
+
+/* Start main.cards-board Style */
+
+.cards-board {
+    position: relative;
+    height: 500px;
+    /* Will changes*/
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    box-shadow: 0 0 15px 0 rgba(46, 61, 73, 0.5);
+    margin: 1% 0 2%;
+    border-radius: 4px;
+}
+
+.overlay-to-start-playing {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(49, 49, 49, 0.57);
+    z-index: 1;
+}
+
+.overlay-to-start-playing p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 30%;
+    background-color: #2e3d49;
+    color: rgb(165, 162, 162);
+    border-radius: 7px;
+    transition: 0.5s;
+    border: 1px solid rgba(0, 0, 0, 0.337);
+    box-shadow: 0 0 20px 0 rgb(125, 139, 150);
+    cursor: pointer;
+}
+
+.overlay-to-start-playing p span {
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+.overlay-to-start-playing p:hover {
+    background-color: #1a2229;
+    border: 1px solid rgba(0, 0, 0, 0.159);
+    box-shadow: 0 0 20px 0 rgba(252, 254, 255, 0.652);
+    color: #fff;
+}
+
+/* End main.cards-board Style */
+
+/* Start Game Choices Style */
+
+.game-choices {
+    background-color: #ece8ed;
+    box-shadow: 5px 5px 20px 0 rgba(46, 61, 73, 0.5);
+    border-radius: 4px;
+    padding: 1% 0;
+}
+
+.game-choices__mode, .game-choices__difficulty, .game-choices__board-size {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1%;
+}
+
+.game-choices__difficulty{
+    display: none;/* Handled by JS when user play against computer */
+}
+
+.game-choices__mode>span, .game-choices__difficulty>span, .game-choices__board-size>span {
+    min-width: 15%;
+    max-width: 25%;
+}
+
+.game-choices__mode div, .game-choices__difficulty div, .game-choices__board-size div {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.game-choices__mode__options, .game-choices__difficulty__options, .game-choices__board-size__options {
+    background-color: #fff;
+    border: 1px solid #d0cdb2;
+    border-radius: 4px;
+    color: .83758b;
+    padding: 1%;
+    margin-left: 2%;
+    text-transform: uppercase;
+    padding: 1% 2%;
+    text-align: center;
+    font-weight: 900;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.game-choices__mode__options:hover, .game-choices__mode__options__focused {
+    background-color: #f8a412;
+    border: 1px solid #f88412;
+    color: #fff;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
+}
+
+.game-choices__difficulty__options:hover, .game-choices__difficulty__options__focused {
+    background-color: #780dbd;
+    border: 1px solid #5b0394;
+    color: #fff;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
+}
+
+.game-choices__board-size__options:hover, .game-choices__board-size__options__focused {
+    background-color: #099287;
+    border: 1px solid #0a645d;
+    color: #fff;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* End Game Choices Style */
+
+/* Start message after game done */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(49, 49, 49, 0.5);
+    z-index: 1;
+}
+
+.modal-box {
+    background-color: #fff;
+    width: 40%;
+    padding: 40px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 0 40px #000000;
+    list-style: none;
+}
+
+.btn-modal {
+    color: #f3f7f7;
+    background-color: #02b3e4;
+    width: 120px;
+    height: 30px;
+    border: 1px solid #e9edef;
+    border-radius: 5px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+    font-size: 1em;
+}
+
+.btn-modal:hover {
+    background-color: #f3f7f7;
+    color: #02b3e4;
+    transition: all 0.5s;
+}
+
+/* Start message after game done */
+
+
+
+@media only screen and (max-width: 768px){
+    .container {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 467px){
+    .container {
+        width: 90%;
+    }
+}

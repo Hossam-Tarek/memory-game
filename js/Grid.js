@@ -126,6 +126,15 @@ export default class Grid {
 
         return count;
     }
+
+    // Executes a provided function once for each grid element.
+    forEach(callback) {
+        for (let row = 0; row < this.#rows; row++) {
+            for (let column = 0; column < this.#columns; column++) {
+                callback(this.#grid[row][column], row, column);
+            }
+        }
+    }
 }
 
 class InvalidRowsNumber extends Error {

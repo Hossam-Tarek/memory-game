@@ -127,11 +127,11 @@ export default class Grid {
         return count;
     }
 
-    // Draws the whole grid by drawing each element using a callback function.
-    drawGrid(callback) {
-        for (let i = 0; i < this.#rows; i++) {
-            for (let j = 0; j < this.#columns; j++) {
-                callback(this.#grid[i][j]);
+    // Executes a provided function once for each grid element.
+    forEach(callback) {
+        for (let row = 0; row < this.#rows; row++) {
+            for (let column = 0; column < this.#columns; column++) {
+                callback(this.#grid[row][column], row, column);
             }
         }
     }

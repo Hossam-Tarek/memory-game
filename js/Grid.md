@@ -8,7 +8,7 @@ This class is meant to deal with the memory game grid throw simple functions, wi
 | [getColumns](#get-columns)() | Number | Returns the number of columns in the grid.
 | [getRows](#get-rows)() | Number | Returns the number of rows in the grid.
 | [getElement](#get-element)(row, column) | String | Returns the specified element by row and column in the grid.
-| [drawGrid](#draw-grid)(callback) | undefined | Draws the whole grid by drawing each element using a callback function.
+| [forEach](#for-each)(callback) | undefined | Executes a provided function once for each grid element.
 
 
 ## [Grid](#grid)
@@ -51,17 +51,21 @@ The row number of the element you want to get.
 #### `column`
 The column number of the element you want to get.
 
-## [drawGrid](#draw-grid)
-Draws the whole grid by drawing each element using a callback function.
+## [forEach](#for-each)
+Executes a provided function once for each grid element.
 #### Syntax
 ```javascript
 let grid = new Grid(rows, columns);
 
-function callback(element) {
+function callback(element[, row, column]) {
     console.log(element);
 }
 
-grid.drawGrid(callback);
+grid.forEach(callback);
 ```
 #### `callback`
-Function that is called for every element of `grid` and it's meant to draw a single item.
+Function that is called for every element in the `grid`.
+#### `row` `optional`
+The row number of the current element.
+#### `column` `optional`
+The column number of the current element.

@@ -61,8 +61,8 @@ body {
 }
 
 .active-player {
-    background-color: .08bdae;
-    border: 1px solid .088f84;
+    background-color: #08bdae;
+    border: 1px solid #088f84;
     color: #fff;
 }
 
@@ -211,8 +211,7 @@ body {
     background-color: #fff;
     border: 1px solid #d0cdb2;
     border-radius: 4px;
-    color: .83758b;
-    padding: 1%;
+    color: #83758b;
     margin-left: 2%;
     text-transform: uppercase;
     padding: 1% 2%;

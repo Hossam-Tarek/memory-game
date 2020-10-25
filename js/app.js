@@ -164,6 +164,33 @@ function resetTimer() {
 function flipCard(){
     this.children[0].classList.toggle("flip");
     this.classList.toggle("disabled");
+
+    let cards = document.querySelectorAll(".disabled");
+    let flippedCards = [];
+    for (let i = 0; i < cards.length; i++) {
+        if (!cards[i].classList.contains("match")) {
+            flippedCards.push(cards[i]);
+        }
+    }
+
+
+    if (flippedCards.length === 2) {
+        if (flippedCards[0].firstChild.getAttribute("src") === flippedCards[1].firstChild.getAttribute("src")) {
+            setTimeout( _ => {
+                flippedCards.forEach(card => {
+                    card.classList.add("match");
+                });
+            }, 1000);
+        } else {
+            setTimeout(_ => {
+                flippedCards.forEach( card => {
+                    card.firstChild.classList.remove("flip");
+                    card.classList.remove("disabled");
+                });
+            }, 1000);
+
+        }
+    }
 }
 /* End handling of game cards abd board */
 

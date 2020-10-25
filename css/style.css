@@ -251,7 +251,6 @@ body {
     top: 0;
     left: 0;
     display: none;
-    /* display: flex; */
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -262,16 +261,24 @@ body {
 
 .modal__box {
     background-color: #fff;
-    width: 40%;
-    padding: 40px;
-    text-align: center;
+    padding: 2%;
     border-radius: 5px;
     box-shadow: 0 0 40px #000000;
-    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.modal__box i:nth-of-type(1), .modal__box i:nth-of-type(2){
-    color: #fdcc0d;
+.modal__box h3 {
+    font-size: 1.4em;
+    width: 100%;
+    text-align: center;
+}
+
+.modal__box p {
+    padding: 5%;
+    text-align: center;
 }
 
 .modal__box__restart-game {

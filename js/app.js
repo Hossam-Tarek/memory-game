@@ -18,6 +18,8 @@ const soloPlayingStatus = document.querySelector('.current-playing-status__solo'
     timerSeconds = document.querySelector(".timer__seconds"),
     timerMinutes = document.querySelector(".timer__minutes");
 
+let matchCardCounter = 0;
+let gridSize = 0;
 let gameBoard = document.getElementById("game-board");
 drawGrid();
 
@@ -179,6 +181,11 @@ function flipCard(){
             setTimeout( _ => {
                 flippedCards.forEach(card => {
                     card.classList.add("match");
+                    matchCardCounter++;
+                    if (matchCardCounter === gridSize) {
+                        resetTimer();
+                        document.querySelector(".modal").style.display = "flex";
+                    }
                 });
             }, 1000);
         } else {
@@ -191,6 +198,8 @@ function flipCard(){
 
         }
     }
+
+
 }
 /* End handling of game cards abd board */
 
@@ -199,6 +208,7 @@ function flipCard(){
 function drawGrid() {
     let [rows, columns] = checkCardOptions();
     let grid = new Grid(rows, columns);
+    gridSize = rows * columns;
 
     removeCards();
 
@@ -240,3 +250,5 @@ function removeCards() {
         card.remove();
     });
 }
+
+restartGameAfterGameComplete.addEventListener("click", _ => {location.reload();});

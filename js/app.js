@@ -18,6 +18,9 @@ const soloPlayingStatus = document.querySelector('.current-playing-status__solo'
     timerSeconds = document.querySelector(".timer__seconds"),
     timerMinutes = document.querySelector(".timer__minutes");
 
+let gameBoard = document.getElementById("game-board");
+drawGrid();
+
 let timer, sec_count = 0, min_count = 0, ten_count = 0;;
 
 // Remove overlay to start playing
@@ -170,9 +173,7 @@ function drawGrid() {
     let [rows, columns] = checkCardOptions();
     let grid = new Grid(rows, columns);
 
-    let gameBoard = document.getElementById("game-board");
-    gameBoard.innerHTML = "";
-
+    removeCards();
 
     gameBoard.setAttribute("style",
         `grid-template-rows: repeat(${rows},1fr); grid-template-columns: repeat(${columns},1fr)`);
@@ -204,4 +205,11 @@ function checkCardOptions() {
     });
 
     return [parseInt(rows), parseInt(columns)];
+}
+
+// Removes all the cards from the grid.
+function removeCards() {
+    document.querySelectorAll(".card").forEach( card => {
+        card.remove();
+    });
 }

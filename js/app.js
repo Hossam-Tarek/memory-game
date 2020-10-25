@@ -23,6 +23,9 @@ let gridSize = 0;
 let gameBoard = document.getElementById("game-board");
 drawGrid();
 
+let numOfMoves = document.querySelector(".current-playing-status__solo__moves");
+let soloMoves = 0;
+
 let timer, sec_count = 0, min_count = 0, ten_count = 0;;
 
 // Remove overlay to start playing
@@ -177,6 +180,11 @@ function flipCard(){
 
 
     if (flippedCards.length === 2) {
+        setTimeout( _ => {
+            soloMoves++;
+            numOfMoves.textContent = soloMoves + " Moves";
+        }, 1000);
+
         if (flippedCards[0].firstChild.getAttribute("src") === flippedCards[1].firstChild.getAttribute("src")) {
             setTimeout( _ => {
                 flippedCards.forEach(card => {

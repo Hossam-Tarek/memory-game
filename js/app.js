@@ -18,6 +18,14 @@ const soloPlayingStatus = document.querySelector('.current-playing-status__solo'
     timerSeconds = document.querySelector(".timer__seconds"),
     timerMinutes = document.querySelector(".timer__minutes");
 
+let matchCardCounter = 0;
+let gridSize = 0;
+let gameBoard = document.getElementById("game-board");
+drawGrid();
+
+let numOfMoves = document.querySelector(".current-playing-status__solo__moves");
+let soloMoves = 0;
+
 let timer, sec_count = 0, min_count = 0, ten_count = 0;;
 
 // Remove overlay to start playing
@@ -161,6 +169,45 @@ function resetTimer() {
 function flipCard(){
     this.children[0].classList.toggle("flip");
     this.classList.toggle("disabled");
+
+    let cards = document.querySelectorAll(".disabled");
+    let flippedCards = [];
+    for (let i = 0; i < cards.length; i++) {
+        if (!cards[i].classList.contains("match")) {
+            flippedCards.push(cards[i]);
+        }
+    }
+
+
+    if (flippedCards.length === 2) {
+        setTimeout( _ => {
+            soloMoves++;
+            numOfMoves.textContent = soloMoves + " Moves";
+        }, 1000);
+
+        if (flippedCards[0].firstChild.getAttribute("src") === flippedCards[1].firstChild.getAttribute("src")) {
+            setTimeout( _ => {
+                flippedCards.forEach(card => {
+                    card.classList.add("match");
+                    matchCardCounter++;
+                    if (matchCardCounter === gridSize) {
+                        resetTimer();
+                        document.querySelector(".modal").style.display = "flex";
+                    }
+                });
+            }, 1000);
+        } else {
+            setTimeout(_ => {
+                flippedCards.forEach( card => {
+                    card.firstChild.classList.remove("flip");
+                    card.classList.remove("disabled");
+                });
+            }, 1000);
+
+        }
+    }
+
+
 }
 /* End handling of game cards abd board */
 
@@ -169,10 +216,9 @@ function flipCard(){
 function drawGrid() {
     let [rows, columns] = checkCardOptions();
     let grid = new Grid(rows, columns);
+    gridSize = rows * columns;
 
-    let gameBoard = document.getElementById("game-board");
-    gameBoard.innerHTML = "";
-
+    removeCards();
 
     gameBoard.setAttribute("style",
         `grid-template-rows: repeat(${rows},1fr); grid-template-columns: repeat(${columns},1fr)`);
@@ -205,3 +251,12 @@ function checkCardOptions() {
 
     return [parseInt(rows), parseInt(columns)];
 }
+
+// Removes all the cards from the grid.
+function removeCards() {
+    document.querySelectorAll(".card").forEach( card => {
+        card.remove();
+    });
+}
+
+restartGameAfterGameComplete.addEventListener("click", _ => {location.reload();});

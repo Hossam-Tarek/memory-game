@@ -61,8 +61,8 @@ body {
 }
 
 .active-player {
-    background-color: .08bdae;
-    border: 1px solid .088f84;
+    background-color: #08bdae;
+    border: 1px solid #088f84;
     color: #fff;
 }
 
@@ -211,8 +211,7 @@ body {
     background-color: #fff;
     border: 1px solid #d0cdb2;
     border-radius: 4px;
-    color: .83758b;
-    padding: 1%;
+    color: #83758b;
     margin-left: 2%;
     text-transform: uppercase;
     padding: 1% 2%;
@@ -252,7 +251,6 @@ body {
     top: 0;
     left: 0;
     display: none;
-    /* display: flex; */
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -263,16 +261,24 @@ body {
 
 .modal__box {
     background-color: #fff;
-    width: 40%;
-    padding: 40px;
-    text-align: center;
+    padding: 2%;
     border-radius: 5px;
     box-shadow: 0 0 40px #000000;
-    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.modal__box i:nth-of-type(1), .modal__box i:nth-of-type(2){
-    color: #fdcc0d;
+.modal__box h3 {
+    font-size: 1.4em;
+    width: 100%;
+    text-align: center;
+}
+
+.modal__box p {
+    padding: 5%;
+    text-align: center;
 }
 
 .modal__box__restart-game {
@@ -284,6 +290,7 @@ body {
     border-radius: 5px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
     font-size: 1em;
+    outline: none;
 }
 
 .modal__box__restart-game:hover {
@@ -304,3 +311,6 @@ body {
     }
 }
 
+.match {
+    opacity: 0.7;
+}
